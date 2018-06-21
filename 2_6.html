@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Using properties (props)</title>
+		<style>
+			#fancy {
+				background-color: gray;
+			}
+			
+			.header {
+				color: #ffffff;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="react-container"></div>
+	</body>
+	<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<script type="text/babel">
+
+		class Checkbox extends React.Component {
+			
+			constructor(props){
+				super(props)
+				this.state = {
+					checked : true
+				}
+				this.handleCheckbox = this.handleCheckbox.bind(this)	
+			}
+
+			handleCheckbox(){
+				this.setState({
+					checked : !this.state.checked
+				})
+			}
+
+			render() {
+				var msg
+				if (this.state.checked){
+					msg = "checked"
+				}
+				else{
+					msg = "not checked"
+				}
+	
+				return(
+
+					<div>
+						<input
+							type = "checkbox"
+							onChange = {this.handleCheckbox}
+							defaultChecked = {this.state.checked} 
+						/> {this.props.label}
+						<p>The checkbox is {msg}</p>
+					</div>
+
+				)
+
+			}
+
+		}
+		ReactDOM.render(
+
+				<Checkbox label="Click Here"/>,
+				document.getElementById('react-container')
+				
+				);
+	</script>
+</html>
+
